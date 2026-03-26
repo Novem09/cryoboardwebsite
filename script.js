@@ -19,9 +19,6 @@ document.querySelectorAll(".reveal").forEach((element) => {
 const body = document.body;
 const introDuration = 2400;
 const scrollFill = document.querySelector(".scroll-rail__fill");
-const loopedVideos = [...document.querySelectorAll("video[data-loop-end]")];
-const heroVideo = document.getElementById("hero-video");
-const heroVideoSource = document.getElementById("hero-video-source");
 
 const setReadyState = () => {
   body.classList.add("is-ready");
@@ -33,38 +30,6 @@ if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 } else {
   window.setTimeout(setReadyState, introDuration);
 }
-
-if (heroVideo && heroVideoSource) {
-  const configuredVideoUrl =
-    window.localStorage.getItem("cryoboardHeroVideoUrl") ||
-    heroVideo.dataset.localSrc;
-
-  if (configuredVideoUrl && heroVideoSource.getAttribute("src") !== configuredVideoUrl) {
-    heroVideoSource.setAttribute("src", configuredVideoUrl);
-    heroVideo.load();
-  }
-}
-
-loopedVideos.forEach((video) => {
-  const loopEnd = Number(video.dataset.loopEnd || 0);
-
-  if (!loopEnd) {
-    return;
-  }
-
-  const restartLoop = () => {
-    video.currentTime = 0;
-    video.play().catch(() => {});
-  };
-
-  video.addEventListener("timeupdate", () => {
-    if (video.currentTime >= loopEnd - 0.12) {
-      restartLoop();
-    }
-  });
-
-  video.addEventListener("ended", restartLoop);
-});
 
 const updateScrollRail = () => {
   if (!scrollFill) {

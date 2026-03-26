@@ -52,18 +52,17 @@
         <section class="hero hero-full">
           <div class="hero-visual reveal" data-parallax="0.1">
             <div class="board-stage video-stage">
-              <video
-                id="hero-video"
-                class="hero-video"
-                autoplay
-                muted
-                playsinline
-                preload="metadata"
-                data-loop-end="31"
-                data-local-src="https://fraf890jl7hykr0p.public.blob.vercel-storage.com/Cryoboard%201.mov"
-              >
-                <source id="hero-video-source" src="https://fraf890jl7hykr0p.public.blob.vercel-storage.com/Cryoboard%201.mov" type="video/quicktime" />
-              </video>
+              <div class="hero-video-shell" aria-hidden="true">
+                <video
+                  class="hero-video"
+                  src="https://fraf890jl7hykr0p.public.blob.vercel-storage.com/Cryoboardforwebsitemp4.mp4"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="auto"
+                ></video>
+              </div>
               <div class="hero-overlay">
                 <div class="hero-overlay-inner">
                   <div class="hero-copy reveal">
