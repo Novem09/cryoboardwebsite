@@ -20,6 +20,8 @@ const body = document.body;
 const introDuration = 2400;
 const scrollFill = document.querySelector(".scroll-rail__fill");
 const loopedVideos = [...document.querySelectorAll("video[data-loop-end]")];
+const heroVideo = document.getElementById("hero-video");
+const heroVideoSource = document.getElementById("hero-video-source");
 
 const setReadyState = () => {
   body.classList.add("is-ready");
@@ -30,6 +32,17 @@ if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   setReadyState();
 } else {
   window.setTimeout(setReadyState, introDuration);
+}
+
+if (heroVideo && heroVideoSource) {
+  const configuredVideoUrl =
+    window.localStorage.getItem("cryoboardHeroVideoUrl") ||
+    heroVideo.dataset.localSrc;
+
+  if (configuredVideoUrl && heroVideoSource.getAttribute("src") !== configuredVideoUrl) {
+    heroVideoSource.setAttribute("src", configuredVideoUrl);
+    heroVideo.load();
+  }
 }
 
 loopedVideos.forEach((video) => {
