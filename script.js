@@ -19,6 +19,7 @@ document.querySelectorAll(".reveal").forEach((element) => {
 const body = document.body;
 const introDuration = 2400;
 const scrollFill = document.querySelector(".scroll-rail__fill");
+const siteHeader = document.querySelector(".site-header");
 
 const setReadyState = () => {
   body.classList.add("is-ready");
@@ -41,8 +42,17 @@ const updateScrollRail = () => {
   scrollFill.style.height = `${Math.min(progress, 100)}%`;
 };
 
+const updateHeaderState = () => {
+  if (!siteHeader) {
+    return;
+  }
+
+  siteHeader.classList.toggle("is-scrolled", window.scrollY > 24);
+};
+
 const onScroll = () => {
   updateScrollRail();
+  updateHeaderState();
 };
 
 window.addEventListener("scroll", onScroll, { passive: true });
