@@ -20,6 +20,7 @@ const body = document.body;
 const introDuration = 2400;
 const scrollFill = document.querySelector(".scroll-rail__fill");
 const siteHeader = document.querySelector(".site-header");
+const heroVideoFrame = document.querySelector("#hero-video-player");
 const lightbox = document.querySelector(".lightbox");
 const lightboxImage = document.querySelector(".lightbox-image");
 const lightboxVideoWrap = document.querySelector(".lightbox-video-wrap");
@@ -62,6 +63,71 @@ const onScroll = () => {
   updateScrollRail();
   updateHeaderState();
 };
+
+let heroPlayer;
+let heroLoopTimeout;
+
+const HERO_LOOP_SECONDS = 30;
+
+const clearHeroLoopTimeout = () => {
+  if (heroLoopTimeout) {
+    window.clearTimeout(heroLoopTimeout);
+    heroLoopTimeout = undefined;
+  }
+};
+
+const scheduleHeroLoopRestart = () => {
+  if (!heroPlayer || typeof heroPlayer.seekTo !== "function") {
+    return;
+  }
+
+  clearHeroLoopTimeout();
+  heroLoopTimeout = window.setTimeout(() => {
+    heroPlayer.seekTo(0, true);
+    heroPlayer.playVideo();
+    scheduleHeroLoopRestart();
+  }, HERO_LOOP_SECONDS * 1000);
+};
+
+const initializeHeroVideoLoop = () => {
+  if (!heroVideoFrame || !window.YT?.Player) {
+    return;
+  }
+
+  heroPlayer = new window.YT.Player("hero-video-player", {
+    events: {
+      onReady: (event) => {
+        event.target.mute();
+        event.target.playVideo();
+        scheduleHeroLoopRestart();
+      },
+      onStateChange: (event) => {
+        if (!window.YT) {
+          return;
+        }
+
+        if (event.data === window.YT.PlayerState.PLAYING) {
+          scheduleHeroLoopRestart();
+        }
+
+        if (
+          event.data === window.YT.PlayerState.PAUSED ||
+          event.data === window.YT.PlayerState.ENDED
+        ) {
+          clearHeroLoopTimeout();
+        }
+      },
+    },
+  });
+};
+
+if (heroVideoFrame) {
+  window.onYouTubeIframeAPIReady = initializeHeroVideoLoop;
+
+  const youtubeApiScript = document.createElement("script");
+  youtubeApiScript.src = "https://www.youtube.com/iframe_api";
+  document.head.appendChild(youtubeApiScript);
+}
 
 const closeLightbox = () => {
   if (!lightbox || !lightboxCaption) {
