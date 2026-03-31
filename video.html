@@ -91,7 +91,7 @@
         <section id="breakdown" class="section breakdown-section reveal">
           <div class="section-heading breakdown-heading">
             <p class="eyebrow">Process Breakdown</p>
-            <h2>Here is the full breakdown of the video.</h2>
+            <h2>FULL BREAKDOWN AND BEHIND THE SCENES</h2>
             <p class="breakdown-copy">
               The visual system was shaped through iterative board studies,
               character development, and moodboarding to lock in the cold,
@@ -110,6 +110,7 @@
               <button
                 class="breakdown-card-trigger"
                 type="button"
+                data-lightbox-type="image"
                 data-lightbox-src="./assets/images/moodboard-wip.png"
                 data-lightbox-alt="Cryoboard moodboard and image generation workflow used to shape the video direction."
                 data-lightbox-caption="Moodboard WIP"
@@ -121,7 +122,7 @@
               </div>
             </article>
 
-            <article class="breakdown-card">
+            <article class="breakdown-card breakdown-card-board">
               <img
                 src="./assets/images/board-wip.png"
                 loading="lazy"
@@ -131,6 +132,7 @@
               <button
                 class="breakdown-card-trigger"
                 type="button"
+                data-lightbox-type="image"
                 data-lightbox-src="./assets/images/board-wip.png"
                 data-lightbox-alt="Cryoboard board design workflow showing snowboard form exploration and generation steps."
                 data-lightbox-caption="Board WIP"
@@ -142,7 +144,7 @@
               </div>
             </article>
 
-            <article class="breakdown-card">
+            <article class="breakdown-card breakdown-card-character">
               <img
                 src="./assets/images/character-wip.png"
                 loading="lazy"
@@ -152,6 +154,7 @@
               <button
                 class="breakdown-card-trigger"
                 type="button"
+                data-lightbox-type="image"
                 data-lightbox-src="./assets/images/character-wip.png"
                 data-lightbox-alt="Cryoboard character development workflow showing snowboarder styling and outfit studies."
                 data-lightbox-caption="Character WIP"
@@ -162,26 +165,122 @@
                 <strong>rider style and suit</strong>
               </div>
             </article>
+
+            <article class="breakdown-card breakdown-card-figma-a">
+              <img
+                src="./assets/images/figma-mood-1.png"
+                loading="lazy"
+                decoding="async"
+                alt="Cryoboard Figma moodboard showing references, product studies, and character direction."
+              />
+              <button
+                class="breakdown-card-trigger"
+                type="button"
+                data-lightbox-type="image"
+                data-lightbox-src="./assets/images/figma-mood-1.png"
+                data-lightbox-alt="Cryoboard Figma moodboard showing references, product studies, and character direction."
+                data-lightbox-caption="Figma Moodboard WIP"
+                aria-label="Open Figma moodboard WIP full screen"
+              ></button>
+              <div class="breakdown-card-copy">
+                <span>Figma Wip 1</span>
+                <strong>Moodboard references and product direction</strong>
+              </div>
+            </article>
+
+            <article class="breakdown-card breakdown-card-video">
+              <img
+                src="https://img.youtube.com/vi/xWtP7KqP5Ao/hqdefault.jpg"
+                loading="lazy"
+                decoding="async"
+                alt="Preview for the Cryoboard workflow walkthrough video."
+              />
+              <button
+                class="breakdown-card-trigger"
+                type="button"
+                data-lightbox-type="youtube"
+                data-lightbox-src="https://www.youtube.com/embed/xWtP7KqP5Ao?autoplay=1&controls=1&rel=0&modestbranding=1&playsinline=1"
+                data-lightbox-caption="walkthrough my freepick workflow/pipeline."
+                aria-label="Open workflow walkthrough video"
+              ></button>
+              <span class="breakdown-play-badge" aria-hidden="true">Play</span>
+              <div class="breakdown-card-copy">
+                <span>Workflow Video</span>
+                <strong>walkthrough my freepick workflow/pipeline.</strong>
+              </div>
+            </article>
+
+            <article class="breakdown-card breakdown-card-figma-b">
+              <img
+                src="./assets/images/figma-mood-2.png"
+                loading="lazy"
+                decoding="async"
+                alt="Cryoboard storyboard frames laid out in Figma for scene sequencing."
+              />
+              <button
+                class="breakdown-card-trigger"
+                type="button"
+                data-lightbox-type="image"
+                data-lightbox-src="./assets/images/figma-mood-2.png"
+                data-lightbox-alt="Cryoboard storyboard frames laid out in Figma for scene sequencing."
+                data-lightbox-caption="Figma Storyboard WIP"
+                aria-label="Open Figma storyboard WIP full screen"
+              ></button>
+              <div class="breakdown-card-copy">
+                <span>Figma Wip 2</span>
+                <strong>Storyboard timing and scene planning</strong>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section workflow-section reveal">
+          <div class="section-heading workflow-heading">
+            <p class="eyebrow">Workflow Stack</p>
+            <h2>Design pipeline Behind the Project</h2>
+            <p class="workflow-copy">
+              A compact view of the tools used across ideation, image
+              generation, layout, refinement, editing, and final delivery.
+            </p>
           </div>
 
-          <article class="breakdown-video-card">
-            <div class="breakdown-video-shell">
-              <div class="breakdown-video-embed">
-                <iframe
-                  class="breakdown-video-player"
-                  src="https://www.youtube.com/embed/xWtP7KqP5Ao?controls=1&modestbranding=1&rel=0&playsinline=1"
-                  title="Cryoboard breakdown video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </div>
-            <div class="breakdown-video-copy">
-              <span>walkthrough my freepick workflow/pipeline.</span>
-              <strong>Playable concept walkthrough inside the WIP section</strong>
-            </div>
-          </article>
+          <div class="workflow-grid">
+            <article class="workflow-card">
+              <span class="workflow-icon">01</span>
+              <h3>ChatGPT</h3>
+              <p>Concept ideation and narrative development.</p>
+            </article>
+
+            <article class="workflow-card">
+              <span class="workflow-icon">02</span>
+              <h3>Nano Banana + Midjourney</h3>
+              <p>Initial ideas and visual direction.</p>
+            </article>
+
+            <article class="workflow-card">
+              <span class="workflow-icon">03</span>
+              <h3>Figma</h3>
+              <p>Keeping track like a notebook, moodboard, and storyboard.</p>
+            </article>
+
+            <article class="workflow-card">
+              <span class="workflow-icon">04</span>
+              <h3>Kling + Freepik Spaces</h3>
+              <p>Image and video generations.</p>
+            </article>
+
+            <article class="workflow-card">
+              <span class="workflow-icon">05</span>
+              <h3>Topaz Video</h3>
+              <p>Upscaling and detailing with motion.</p>
+            </article>
+
+            <article class="workflow-card">
+              <span class="workflow-icon">06</span>
+              <h3>Davinci + After Effects</h3>
+              <p>Compositing and postprocessing.</p>
+            </article>
+          </div>
         </section>
 
         <section id="website-idea" class="section render-video-section reveal">
@@ -207,6 +306,48 @@
             </video>
           </div>
         </section>
+
+        <section class="section conclusion-section reveal">
+          <div class="section-heading conclusion-heading">
+            <p class="eyebrow">Conclusion</p>
+            <h2>AN EXPERIMENT IN AI-NATIVE STORYTELLING.</h2>
+            <p class="conclusion-copy">
+              This is an experimental project that explores how AI-driven tools
+              can shape product storytelling and how AI is entering creative
+              workflows in a much deeper way.
+            </p>
+            <p class="conclusion-copy">
+              More than a single video or website, it demonstrates how a
+              complete world can be built with AI from start to finish, moving
+              from concept and visual direction to execution, motion, and final
+              presentation.
+            </p>
+            <div class="conclusion-actions">
+              <a class="button button-primary" href="mailto:harshnikam09@gmail.com"
+                >Reach out by Email</a
+              >
+              <a
+                class="button button-secondary"
+                href="https://www.behance.net/harshnikam4"
+                target="_blank"
+                rel="noreferrer"
+                >Behance</a
+              >
+              <a
+                class="button button-secondary"
+                href="https://www.linkedin.com/in/harshnikam4/"
+                target="_blank"
+                rel="noreferrer"
+                >LinkedIn</a
+              >
+            </div>
+            <div class="conclusion-return">
+              <a class="conclusion-return-link" href="./index.html#top"
+                >Back to Page 1</a
+              >
+            </div>
+          </div>
+        </section>
       </main>
     </div>
 
@@ -226,7 +367,17 @@
           Close
         </button>
         <figure class="lightbox-figure">
-          <img class="lightbox-image" src="" alt="" />
+          <img class="lightbox-image" src="" alt="" hidden />
+          <div class="lightbox-video-wrap" hidden>
+            <iframe
+              class="lightbox-video"
+              src=""
+              title="Expanded walkthrough video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
           <figcaption id="lightbox-caption" class="lightbox-caption"></figcaption>
         </figure>
       </div>

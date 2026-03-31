@@ -22,6 +22,8 @@ const scrollFill = document.querySelector(".scroll-rail__fill");
 const siteHeader = document.querySelector(".site-header");
 const lightbox = document.querySelector(".lightbox");
 const lightboxImage = document.querySelector(".lightbox-image");
+const lightboxVideoWrap = document.querySelector(".lightbox-video-wrap");
+const lightboxVideo = document.querySelector(".lightbox-video");
 const lightboxCaption = document.querySelector(".lightbox-caption");
 const lightboxClose = document.querySelector(".lightbox-close");
 const lightboxBackdrop = document.querySelector(".lightbox-backdrop");
@@ -62,34 +64,66 @@ const onScroll = () => {
 };
 
 const closeLightbox = () => {
-  if (!lightbox || !lightboxImage || !lightboxCaption) {
+  if (!lightbox || !lightboxCaption) {
     return;
   }
 
   lightbox.classList.remove("is-open");
   lightbox.setAttribute("aria-hidden", "true");
   body.classList.remove("is-lightbox-open");
-  lightboxImage.removeAttribute("src");
-  lightboxImage.setAttribute("alt", "");
+  if (lightboxImage) {
+    lightboxImage.removeAttribute("src");
+    lightboxImage.setAttribute("alt", "");
+    lightboxImage.hidden = true;
+  }
+  if (lightboxVideo) {
+    lightboxVideo.removeAttribute("src");
+  }
+  if (lightboxVideoWrap) {
+    lightboxVideoWrap.hidden = true;
+  }
   lightboxCaption.textContent = "";
 };
 
 const openLightbox = (trigger) => {
-  if (!lightbox || !lightboxImage || !lightboxCaption) {
+  if (!lightbox || !lightboxCaption) {
     return;
   }
 
-  const imageSrc = trigger.dataset.lightboxSrc;
+  const mediaType = trigger.dataset.lightboxType || "image";
+  const mediaSrc = trigger.dataset.lightboxSrc;
   const imageAlt = trigger.dataset.lightboxAlt || "";
-  const imageCaption = trigger.dataset.lightboxCaption || "";
+  const mediaCaption = trigger.dataset.lightboxCaption || "";
 
-  if (!imageSrc) {
+  if (!mediaSrc) {
     return;
   }
 
-  lightboxImage.setAttribute("src", imageSrc);
-  lightboxImage.setAttribute("alt", imageAlt);
-  lightboxCaption.textContent = imageCaption;
+  if (mediaType === "youtube") {
+    if (lightboxImage) {
+      lightboxImage.removeAttribute("src");
+      lightboxImage.setAttribute("alt", "");
+      lightboxImage.hidden = true;
+    }
+
+    if (lightboxVideo && lightboxVideoWrap) {
+      lightboxVideo.setAttribute("src", mediaSrc);
+      lightboxVideoWrap.hidden = false;
+    }
+  } else if (lightboxImage) {
+    lightboxImage.setAttribute("src", mediaSrc);
+    lightboxImage.setAttribute("alt", imageAlt);
+    lightboxImage.hidden = false;
+
+    if (lightboxVideo) {
+      lightboxVideo.removeAttribute("src");
+    }
+    if (lightboxVideoWrap) {
+      lightboxVideoWrap.hidden = true;
+    }
+  }
+
+  lightboxCaption.textContent = mediaCaption;
   lightbox.classList.add("is-open");
   lightbox.setAttribute("aria-hidden", "false");
   body.classList.add("is-lightbox-open");
