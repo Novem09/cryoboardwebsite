@@ -66,13 +66,22 @@ const onScroll = () => {
 
 let heroPlayer;
 let heroLoopTimeout;
+let heroLoopInterval;
 
 const HERO_LOOP_SECONDS = 30;
+const HERO_VIDEO_ID = "lN1hoBVX73U";
 
 const clearHeroLoopTimeout = () => {
   if (heroLoopTimeout) {
     window.clearTimeout(heroLoopTimeout);
     heroLoopTimeout = undefined;
+  }
+};
+
+const clearHeroLoopInterval = () => {
+  if (heroLoopInterval) {
+    window.clearInterval(heroLoopInterval);
+    heroLoopInterval = undefined;
   }
 };
 
@@ -89,6 +98,22 @@ const scheduleHeroLoopRestart = () => {
   }, HERO_LOOP_SECONDS * 1000);
 };
 
+const startHeroLoopWatcher = () => {
+  if (!heroPlayer || typeof heroPlayer.getCurrentTime !== "function") {
+    return;
+  }
+
+  clearHeroLoopInterval();
+  heroLoopInterval = window.setInterval(() => {
+    const currentTime = heroPlayer.getCurrentTime();
+
+    if (typeof currentTime === "number" && currentTime >= HERO_LOOP_SECONDS) {
+      heroPlayer.seekTo(0, true);
+      heroPlayer.playVideo();
+    }
+  }, 250);
+};
+
 const initializeHeroVideoLoop = () => {
   if (!heroVideoFrame || !window.YT?.Player) {
     return;
@@ -98,7 +123,14 @@ const initializeHeroVideoLoop = () => {
     events: {
       onReady: (event) => {
         event.target.mute();
+        event.target.loadVideoById({
+          videoId: HERO_VIDEO_ID,
+          startSeconds: 0,
+          endSeconds: HERO_LOOP_SECONDS,
+          suggestedQuality: "hd1080",
+        });
         event.target.playVideo();
+        startHeroLoopWatcher();
         scheduleHeroLoopRestart();
       },
       onStateChange: (event) => {
@@ -107,6 +139,7 @@ const initializeHeroVideoLoop = () => {
         }
 
         if (event.data === window.YT.PlayerState.PLAYING) {
+          startHeroLoopWatcher();
           scheduleHeroLoopRestart();
         }
 
@@ -114,6 +147,7 @@ const initializeHeroVideoLoop = () => {
           event.data === window.YT.PlayerState.PAUSED ||
           event.data === window.YT.PlayerState.ENDED
         ) {
+          clearHeroLoopInterval();
           clearHeroLoopTimeout();
         }
       },
