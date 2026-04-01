@@ -2044,6 +2044,16 @@ h3 {
     display: none;
   }
 
+  .section,
+  .video-hero,
+  .video-player-section,
+  .breakdown-section,
+  .workflow-section,
+  .render-video-section,
+  .conclusion-section {
+    width: min(calc(100% - 0.75rem), var(--max-width));
+  }
+
   body::before {
     background-size: 112px 112px;
   }
@@ -2056,35 +2066,79 @@ h3 {
   }
 
   .site-header {
+    top: 0.6rem;
     width: min(calc(100% - 0.85rem), var(--max-width));
-    grid-template-columns: 1fr;
-    gap: 0.7rem;
-    justify-items: stretch;
-    padding: 0.85rem;
-    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding: 0.45rem 0.65rem;
+    border-radius: 999px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+
+  .site-header::-webkit-scrollbar,
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .brand {
+    flex: 0 0 auto;
+    gap: 0.45rem;
+  }
+
+  .brand-mark {
+    width: 0.56rem;
+    height: 0.56rem;
+  }
+
+  .brand-text {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
   }
 
   .site-nav {
-    gap: 0.75rem;
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 0.85rem;
+    overflow-x: auto;
+    overflow-y: hidden;
     padding-bottom: 0;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .site-nav a,
+  .header-cta {
+    font-size: 0.7rem;
+    line-height: 1;
+    white-space: nowrap;
   }
 
   .header-actions {
-    width: 100%;
-    justify-self: stretch;
-    justify-content: stretch;
+    flex: 0 0 auto;
+    width: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 0.4rem;
   }
 
-  .header-actions .header-cta {
+  .header-actions .header-cta:not(.header-cta-highlight) {
+    display: none;
+  }
+
+  .header-actions .header-cta,
+  .site-header > .header-cta {
     display: inline-flex;
     align-items: center;
-    flex: 1 1 calc(50% - 0.25rem);
     justify-content: center;
+    flex: 0 0 auto;
+    min-height: 2rem;
+    padding: 0.45rem 0.8rem;
     text-align: center;
-  }
-
-  .site-header > .header-cta {
-    justify-self: start;
   }
 
   .technology,
@@ -2098,29 +2152,36 @@ h3 {
   }
 
   h1 {
-    font-size: clamp(3rem, 14vw, 4.6rem);
+    font-size: clamp(2.65rem, 10.8vw, 3.5rem);
+    line-height: 0.92;
   }
 
   h2 {
-    font-size: clamp(2rem, 10vw, 3rem);
+    font-size: clamp(1.85rem, 8.8vw, 2.65rem);
   }
 
   .hero-metrics {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .stat-item {
-    grid-template-columns: 1fr;
+    grid-template-columns: 4.2rem 1fr 2.4rem;
     gap: 0.55rem;
   }
 
   .stat-value {
-    text-align: left;
+    text-align: right;
   }
 
   .stage-card {
     width: 100%;
     max-width: none;
+  }
+
+  .hero .eyebrow {
+    margin-bottom: 0.65rem;
+    font-size: 0.64rem;
+    letter-spacing: 0.12em;
   }
 
   .hero-badge {
@@ -2129,19 +2190,24 @@ h3 {
 
   .hero-overlay-inner {
     width: min(calc(100% - 0.9rem), var(--max-width));
-    padding-top: 9.5rem;
-    padding-bottom: 1.25rem;
-    gap: 1rem;
+    padding-top: 5rem;
+    padding-bottom: 0.9rem;
+    gap: 0.85rem;
+    align-content: end;
   }
 
   .hero-sidecards {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.75rem;
+    display: none;
   }
 
   .hero-copy {
-    max-width: 100%;
+    max-width: min(22rem, 100%);
+  }
+
+  .hero .hero-text {
+    max-width: 19rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 
   .hero-actions .button,
@@ -2153,20 +2219,32 @@ h3 {
 
   .hero-metrics {
     gap: 0.75rem;
-    margin-top: 1.75rem;
+    margin-top: 1.2rem;
   }
 
   .hero-metrics > div {
-    padding: 1rem;
+    min-width: 0;
+    padding: 0.85rem 0.7rem;
+    border-radius: 18px;
+  }
+
+  .metric-value {
+    font-size: 1.25rem;
+  }
+
+  .metric-label {
+    font-size: 0.72rem;
+    line-height: 1.35;
   }
 
   .hero-visual,
   .board-stage {
-    min-height: 100svh;
+    min-height: max(42rem, 100svh);
+    height: auto;
   }
 
   .hero-video-frame {
-    transform: translate(-50%, -50%) scale(1.04);
+    transform: translate(-50%, -50%) scale(1.02);
   }
 
   .board-stage,
@@ -2175,29 +2253,29 @@ h3 {
   .marquee-card,
   .story-card,
   .breakdown-card {
-    min-height: 20rem;
+    min-height: 16rem;
   }
 
   .marquee-wide,
   .story-large {
-    min-height: 24rem;
+    min-height: 19rem;
   }
 
   .feature-photo img {
-    min-height: 18rem;
+    min-height: 15rem;
   }
 
   .performance-layout {
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .performance-visual {
-    min-height: 24rem;
+    min-height: 21rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     gap: 0.75rem;
-    padding: 1rem;
+    padding: 0.85rem;
   }
 
   .performance-card {
@@ -2212,34 +2290,84 @@ h3 {
     inset: 12% 10%;
   }
 
+  .image-marquee,
+  .technology-grid,
+  .spec-grid,
+  .story-grid,
+  .breakdown-grid,
+  .workflow-grid {
+    gap: 0.75rem;
+  }
+
+  .feature-panel,
+  .spec-card,
+  .workflow-card,
+  .breakdown-card,
+  .marquee-card,
+  .story-card {
+    border-radius: 20px;
+  }
+
+  .feature-overlay,
+  .story-copy,
+  .breakdown-card-copy {
+    padding: 1rem;
+  }
+
+  .feature-overlay h3,
+  .workflow-card h3 {
+    font-size: 1.08rem;
+  }
+
+  .spec-card {
+    min-height: auto;
+    padding: 1.1rem 1rem;
+  }
+
+  .spec-card::after {
+    left: 1rem;
+    right: 1rem;
+    top: 3rem;
+  }
+
+  .spec-card span {
+    margin-bottom: 0.75rem;
+    font-size: 0.68rem;
+  }
+
+  .spec-card strong {
+    max-width: none;
+    font-size: 1rem;
+  }
+
   .cta-section {
     margin-top: 2rem;
     margin-bottom: 2.5rem;
-    padding: 1.75rem 1rem;
+    padding: 1.4rem 0.95rem;
     border-radius: 24px;
   }
 
   .video-main {
-    padding-top: 10.5rem;
+    padding-top: 5.25rem;
     padding-bottom: 3rem;
   }
 
   .video-hero {
-    padding-top: 1rem;
+    padding-top: 0.35rem;
   }
 
   .video-manifesto {
-    width: min(100%, 9.5ch);
-    gap: 0.14em;
-    font-size: clamp(2.55rem, 12vw, 4.5rem);
+    width: min(100%, 9.2ch);
+    gap: 0.1em;
+    font-size: clamp(2.15rem, 10.2vw, 3.2rem);
   }
 
   .video-manifesto-copy {
-    max-width: 26rem;
+    max-width: 21rem;
     margin-left: auto;
     margin-right: auto;
-    font-size: 0.9rem;
-    line-height: 1.55;
+    font-size: 0.86rem;
+    line-height: 1.5;
   }
 
   .video-player-shell,
@@ -2267,7 +2395,7 @@ h3 {
   }
 
   .breakdown-card {
-    min-height: 18rem;
+    min-height: 15rem;
     border-radius: 24px;
   }
 
@@ -2289,12 +2417,15 @@ h3 {
 
   .workflow-card {
     min-height: auto;
-    padding: 1.15rem;
+    padding: 1rem;
     border-radius: 22px;
   }
 
   .workflow-icon {
-    margin-bottom: 1.8rem;
+    width: 2.45rem;
+    height: 2.45rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.72rem;
   }
 
   .render-video-player {
@@ -2327,95 +2458,115 @@ h3 {
 
 @media (max-width: 560px) {
   .site-header {
-    top: 0.75rem;
+    top: 0.5rem;
     width: min(calc(100% - 0.75rem), var(--max-width));
-    padding: 0.75rem;
-    border-radius: 20px;
+    gap: 0.4rem;
+    padding: 0.4rem 0.55rem;
   }
 
   .brand-text {
-    font-size: 0.72rem;
-    letter-spacing: 0.07em;
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
   }
 
   .site-nav a,
   .header-cta {
-    font-size: 0.76rem;
+    font-size: 0.66rem;
   }
 
   .header-actions {
-    flex-direction: column;
-    align-items: stretch;
+    gap: 0.3rem;
   }
 
   .header-actions .header-cta,
   .site-header > .header-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .site-header > .header-cta {
-    justify-self: stretch;
+    min-height: 1.9rem;
+    padding: 0.42rem 0.68rem;
   }
 
   .button {
     width: 100%;
     min-width: 0;
-    padding: 0.95rem 1.1rem;
+    padding: 0.82rem 0.95rem;
+    font-size: 0.64rem;
   }
 
   .hero-actions {
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.6rem;
+    margin-top: 1rem;
   }
 
   .hero-overlay-inner {
-    padding-top: 10.25rem;
-    padding-bottom: 1rem;
+    width: min(calc(100% - 0.65rem), var(--max-width));
+    padding-top: 4.5rem;
+    padding-bottom: 0.75rem;
   }
 
   .hero-copy h1 {
-    max-width: 8.5ch;
+    max-width: 7.2ch;
+    font-size: clamp(2.2rem, 10vw, 2.95rem);
   }
 
   .hero-visual,
   .board-stage {
-    min-height: 38rem;
-    min-height: 100svh;
+    min-height: max(39rem, 100svh);
   }
 
   .performance-visual {
-    min-height: 22rem;
+    min-height: 19rem;
   }
 
   .spec-card strong {
-    max-width: none;
-    font-size: 1.08rem;
+    font-size: 0.96rem;
   }
 
   .portfolio-signoff {
     padding-left: 0;
     padding-right: 0;
-    font-size: 0.84rem;
+    font-size: 0.8rem;
   }
 
   .video-main {
-    padding-top: clamp(9.75rem, 29vw, 12.5rem);
+    padding-top: 4.9rem;
   }
 
   .video-manifesto {
-    width: min(100%, 8.6ch);
-    font-size: clamp(2.2rem, 13vw, 3.5rem);
+    width: min(100%, 8.2ch);
+    font-size: clamp(1.95rem, 10.5vw, 2.7rem);
+  }
+
+  .hero .hero-text,
+  .workflow-card p,
+  .breakdown-copy,
+  .render-video-copy,
+  .conclusion-copy {
+    font-size: 0.82rem;
+    line-height: 1.45;
   }
 
   .breakdown-card {
-    min-height: 16rem;
+    min-height: 14rem;
   }
 
   .workflow-card h3 {
-    font-size: 1.25rem;
+    font-size: 1rem;
+  }
+
+  .hero-metrics {
+    gap: 0.55rem;
+  }
+
+  .hero-metrics > div {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .metric-value {
+    font-size: 1.08rem;
+  }
+
+  .metric-label {
+    font-size: 0.66rem;
   }
 
   .lightbox {
