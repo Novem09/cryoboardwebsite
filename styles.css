@@ -2390,9 +2390,10 @@ h3 {
   }
 
   .video-manifesto {
-    width: min(100%, 9.2ch);
-    gap: 0.1em;
-    font-size: clamp(2.15rem, 10.2vw, 3.2rem);
+    width: min(100%, 11.4ch);
+    gap: 0.06em;
+    font-size: clamp(1.75rem, 8.2vw, 2.5rem);
+    line-height: 0.98;
   }
 
   .video-manifesto-copy {
@@ -2585,8 +2586,10 @@ h3 {
   }
 
   .video-manifesto {
-    width: min(100%, 8.2ch);
-    font-size: clamp(1.95rem, 10.5vw, 2.7rem);
+    width: min(100%, 10.6ch);
+    gap: 0.05em;
+    font-size: clamp(1.6rem, 7.8vw, 2.15rem);
+    line-height: 1;
   }
 
   .hero .hero-text,
