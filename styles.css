@@ -123,11 +123,14 @@ body.is-ready .intro-loader {
 
 .intro-loader__glow {
   position: absolute;
+  left: 50%;
+  top: 50%;
   width: 28rem;
   height: 28rem;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(152, 203, 236, 0.42), transparent 62%);
   filter: blur(18px);
+  transform: translate(-50%, -50%);
 }
 
 .intro-loader__board-wrap {
@@ -1941,17 +1944,17 @@ h3 {
 @keyframes loader-spin-mobile {
   0% {
     opacity: 0;
-    transform: translate3d(0, 24px, 0) rotateY(0deg) rotateZ(-10deg) scale(0.82);
+    transform: translate3d(0, 24px, 0) rotateZ(-8deg) scale(0.82);
   }
   18% {
     opacity: 1;
   }
   60% {
-    transform: translate3d(0, -6px, 0) rotateY(260deg) rotateZ(2deg) scale(1);
+    transform: translate3d(0, -6px, 0) rotateZ(2deg) scale(1);
   }
   100% {
     opacity: 1;
-    transform: translate3d(0, 0, 0) rotateY(360deg) rotateZ(0deg) scale(1);
+    transform: translate3d(0, 0, 0) rotateZ(0deg) scale(1);
   }
 }
 
@@ -2069,6 +2072,10 @@ h3 {
 
 @media (max-width: 720px) {
   .intro-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 1.1rem;
     padding-inline: 1rem;
   }
@@ -2080,6 +2087,7 @@ h3 {
 
   .intro-loader__board-wrap {
     width: 100%;
+    perspective: none;
     justify-items: center;
   }
 
