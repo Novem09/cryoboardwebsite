@@ -2271,19 +2271,41 @@ h3 {
 
   .performance-visual {
     min-height: 21rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 0.75rem;
     padding: 0.85rem;
   }
 
   .performance-card {
-    position: relative;
-    inset: auto;
+    position: absolute;
     z-index: 1;
-    width: 100%;
-    max-width: none;
+    width: min(9.75rem, calc(100% - 2rem));
+    padding: 0.7rem 0.75rem;
+    border-radius: 16px;
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.74), rgba(215, 232, 244, 0.4)),
+      rgba(244, 249, 253, 0.58);
+    backdrop-filter: blur(14px);
+  }
+
+  .performance-card span {
+    font-size: 0.58rem;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .performance-card strong {
+    font-size: 0.7rem;
+    line-height: 1.22;
+  }
+
+  .primary-card {
+    top: 0.85rem;
+    right: 0.85rem;
+  }
+
+  .secondary-card {
+    left: 0.85rem;
+    bottom: 0.85rem;
   }
 
   .ice-orbit {
@@ -2517,6 +2539,21 @@ h3 {
     min-height: 19rem;
   }
 
+  .performance-card {
+    width: min(8.5rem, calc(100% - 1.5rem));
+    padding: 0.58rem 0.62rem;
+    border-radius: 14px;
+  }
+
+  .performance-card span {
+    font-size: 0.54rem;
+  }
+
+  .performance-card strong {
+    font-size: 0.7rem;
+    line-height: 1.22;
+  }
+
   .spec-card strong {
     font-size: 0.96rem;
   }
@@ -2584,3 +2621,4 @@ h3 {
     border-radius: 18px;
   }
 }
+
