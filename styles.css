@@ -2201,13 +2201,24 @@ h3 {
   }
 
   .hero-copy {
-    max-width: min(22rem, 100%);
+    width: 100%;
+    max-width: none;
+    margin-inline: auto;
   }
 
   .hero .hero-text {
     max-width: 19rem;
     font-size: 0.9rem;
     line-height: 1.5;
+  }
+
+  .hero-actions,
+  .hero-metrics {
+    width: 100%;
+  }
+
+  .hero-actions {
+    justify-content: center;
   }
 
   .hero-actions .button,
@@ -2523,6 +2534,11 @@ h3 {
     width: min(calc(100% - 0.65rem), var(--max-width));
     padding-top: 4.5rem;
     padding-bottom: 0.75rem;
+  }
+
+  .hero-actions,
+  .hero-metrics {
+    width: 100%;
   }
 
   .hero-copy h1 {
