@@ -49,6 +49,12 @@ body {
   color: var(--text);
   font-family: var(--font-sans);
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+img,
+video {
+  max-width: 100%;
 }
 
 body.is-lightbox-open {
@@ -370,6 +376,7 @@ h3,
   position: relative;
   width: 100%;
   min-height: 100vh;
+  min-height: 100svh;
   margin-top: 0;
   padding: 0;
 }
@@ -559,6 +566,7 @@ h3 {
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100svh;
   will-change: transform;
 }
 
@@ -1281,7 +1289,7 @@ h3 {
 
 .video-manifesto {
   display: grid;
-  gap: 0.12em;
+  gap: 0.18em;
   max-width: none;
   width: min(100%, 15.5ch);
   margin: 0 auto;
@@ -1289,7 +1297,7 @@ h3 {
   font-size: clamp(3.55rem, 8vw, 7.4rem);
   font-weight: 800;
   font-style: italic;
-  line-height: 0.9;
+  line-height: 0.96;
   letter-spacing: -0.055em;
   text-transform: uppercase;
   text-wrap: balance;
@@ -1403,6 +1411,7 @@ h3 {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  line-height: 1.06;
 }
 
 .breakdown-copy {
@@ -1584,6 +1593,7 @@ h3 {
   max-width: 12ch;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.12;
 }
 
 .workflow-copy {
@@ -1673,6 +1683,7 @@ h3 {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  line-height: 1.06;
 }
 
 .render-video-copy {
@@ -1737,6 +1748,7 @@ h3 {
   max-width: 14ch;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.06;
 }
 
 .conclusion-copy {
@@ -1950,10 +1962,27 @@ h3 {
   .hero-overlay-inner {
     grid-template-columns: 1fr;
     align-items: end;
+    padding-top: clamp(8rem, 11vw, 9.5rem);
+    padding-bottom: 2rem;
   }
 
   .hero-sidecards {
     justify-self: start;
+    width: 100%;
+  }
+
+  .hero-copy {
+    max-width: 100%;
+  }
+
+  .performance-layout {
+    gap: 1.5rem;
+  }
+
+  .video-player-shell,
+  .render-video-shell,
+  .conclusion-heading {
+    padding: 1rem;
   }
 
   .spec-card,
@@ -1972,20 +2001,15 @@ h3 {
   }
 }
 
-@media (max-width: 720px) {
-  .scroll-rail {
-    right: 0.5rem;
-    height: 7rem;
-  }
-
+@media (max-width: 900px) {
   .site-header {
-    width: min(calc(100% - 0.75rem), var(--max-width));
+    width: min(calc(100% - 1rem), var(--max-width));
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 0.8rem 1rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.75rem 1rem;
     align-items: center;
-    padding: 0.9rem 1rem;
-    border-radius: 24px;
+    padding: 0.85rem 1rem;
+    border-radius: 28px;
   }
 
   .site-nav {
@@ -2001,7 +2025,66 @@ h3 {
   }
 
   .header-actions {
-    justify-self: end;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .hero-overlay-inner {
+    padding-top: 9.25rem;
+  }
+
+  .performance-card {
+    width: min(16rem, calc(100% - 2rem));
+  }
+}
+
+@media (max-width: 720px) {
+  .scroll-rail {
+    display: none;
+  }
+
+  body::before {
+    background-size: 112px 112px;
+  }
+
+  .ambient {
+    width: 22rem;
+    height: 22rem;
+    filter: blur(54px);
+    opacity: 0.28;
+  }
+
+  .site-header {
+    width: min(calc(100% - 0.85rem), var(--max-width));
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+    justify-items: stretch;
+    padding: 0.85rem;
+    border-radius: 24px;
+  }
+
+  .site-nav {
+    gap: 0.75rem;
+    padding-bottom: 0;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-self: stretch;
+    justify-content: stretch;
+  }
+
+  .header-actions .header-cta {
+    display: inline-flex;
+    align-items: center;
+    flex: 1 1 calc(50% - 0.25rem);
+    justify-content: center;
+    text-align: center;
+  }
+
+  .site-header > .header-cta {
+    justify-self: start;
   }
 
   .technology,
@@ -2036,7 +2119,8 @@ h3 {
   }
 
   .stage-card {
-    max-width: 13rem;
+    width: 100%;
+    max-width: none;
   }
 
   .hero-badge {
@@ -2044,43 +2128,182 @@ h3 {
   }
 
   .hero-overlay-inner {
-    width: min(calc(100% - 0.75rem), var(--max-width));
-    padding-top: 10rem;
-    padding-bottom: 1.5rem;
+    width: min(calc(100% - 0.9rem), var(--max-width));
+    padding-top: 9.5rem;
+    padding-bottom: 1.25rem;
+    gap: 1rem;
   }
 
   .hero-sidecards {
     flex-direction: column;
     align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .hero-copy {
+    max-width: 100%;
+  }
+
+  .hero-actions .button,
+  .video-caption-bar .button,
+  .conclusion-actions .button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hero-metrics {
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .hero-metrics > div {
+    padding: 1rem;
+  }
+
+  .hero-visual,
+  .board-stage {
+    min-height: 100svh;
+  }
+
+  .hero-video-frame {
+    transform: translate(-50%, -50%) scale(1.04);
+  }
+
+  .board-stage,
+  .performance-visual,
+  .gallery-panel,
+  .marquee-card,
+  .story-card,
+  .breakdown-card {
+    min-height: 20rem;
+  }
+
+  .marquee-wide,
+  .story-large {
+    min-height: 24rem;
+  }
+
+  .feature-photo img {
+    min-height: 18rem;
+  }
+
+  .performance-layout {
+    gap: 1.25rem;
+  }
+
+  .performance-visual {
+    min-height: 24rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .performance-card {
+    position: relative;
+    inset: auto;
+    z-index: 1;
+    width: 100%;
+    max-width: none;
+  }
+
+  .ice-orbit {
+    inset: 12% 10%;
   }
 
   .cta-section {
-    padding: 2rem 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+    padding: 1.75rem 1rem;
+    border-radius: 24px;
   }
 
   .video-main {
-    padding-top: 8.75rem;
+    padding-top: 10.5rem;
+    padding-bottom: 3rem;
   }
 
   .video-hero {
-    padding-top: 2rem;
+    padding-top: 1rem;
   }
 
   .video-manifesto {
-    width: 100%;
-    gap: 0.08em;
-    font-size: clamp(2.9rem, 12vw, 5.35rem);
+    width: min(100%, 9.5ch);
+    gap: 0.14em;
+    font-size: clamp(2.55rem, 12vw, 4.5rem);
   }
 
   .video-manifesto-copy {
     max-width: 26rem;
     margin-left: auto;
     margin-right: auto;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .video-player-shell,
+  .render-video-shell,
+  .conclusion-heading {
+    padding: 0.85rem;
+    border-radius: 26px;
+  }
+
+  .video-player-frame,
+  .render-video-player {
+    border-radius: 20px;
   }
 
   .video-caption-bar {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.85rem;
+    padding-top: 0.75rem;
+  }
+
+  .breakdown-grid,
+  .workflow-grid {
+    gap: 0.85rem;
+  }
+
+  .breakdown-card {
+    min-height: 18rem;
+    border-radius: 24px;
+  }
+
+  .breakdown-card-copy {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .breakdown-card-copy strong {
+    max-width: none;
+    font-size: 1.05rem;
+  }
+
+  .breakdown-play-badge {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .workflow-card {
+    min-height: auto;
+    padding: 1.15rem;
+    border-radius: 22px;
+  }
+
+  .workflow-icon {
+    margin-bottom: 1.8rem;
+  }
+
+  .render-video-player {
+    aspect-ratio: 16 / 9;
+    height: auto;
+  }
+
+  .conclusion-heading {
+    padding: 1.7rem 1rem;
   }
 
   .lightbox {
@@ -2099,5 +2322,114 @@ h3 {
   .lightbox-video-wrap {
     width: min(100vw - 2rem, 1400px);
     border-radius: 22px;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-header {
+    top: 0.75rem;
+    width: min(calc(100% - 0.75rem), var(--max-width));
+    padding: 0.75rem;
+    border-radius: 20px;
+  }
+
+  .brand-text {
+    font-size: 0.72rem;
+    letter-spacing: 0.07em;
+  }
+
+  .site-nav a,
+  .header-cta {
+    font-size: 0.76rem;
+  }
+
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-actions .header-cta,
+  .site-header > .header-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .site-header > .header-cta {
+    justify-self: stretch;
+  }
+
+  .button {
+    width: 100%;
+    min-width: 0;
+    padding: 0.95rem 1.1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .hero-overlay-inner {
+    padding-top: 10.25rem;
+    padding-bottom: 1rem;
+  }
+
+  .hero-copy h1 {
+    max-width: 8.5ch;
+  }
+
+  .hero-visual,
+  .board-stage {
+    min-height: 38rem;
+    min-height: 100svh;
+  }
+
+  .performance-visual {
+    min-height: 22rem;
+  }
+
+  .spec-card strong {
+    max-width: none;
+    font-size: 1.08rem;
+  }
+
+  .portfolio-signoff {
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 0.84rem;
+  }
+
+  .video-main {
+    padding-top: clamp(9.75rem, 29vw, 12.5rem);
+  }
+
+  .video-manifesto {
+    width: min(100%, 8.6ch);
+    font-size: clamp(2.2rem, 13vw, 3.5rem);
+  }
+
+  .breakdown-card {
+    min-height: 16rem;
+  }
+
+  .workflow-card h3 {
+    font-size: 1.25rem;
+  }
+
+  .lightbox {
+    padding: 0.75rem;
+  }
+
+  .lightbox-close {
+    position: static;
+    display: inline-flex;
+    margin: 0 0 0.75rem auto;
+  }
+
+  .lightbox-image,
+  .lightbox-video-wrap {
+    border-radius: 18px;
   }
 }
