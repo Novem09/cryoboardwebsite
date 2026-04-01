@@ -2421,10 +2421,15 @@ h3 {
   }
 
   .video-manifesto {
-    width: min(100%, 11.4ch);
+    width: fit-content;
+    max-width: 100%;
     gap: 0.06em;
-    font-size: clamp(1.75rem, 8.2vw, 2.5rem);
+    font-size: clamp(1.55rem, 7.1vw, 2.2rem);
     line-height: 0.98;
+  }
+
+  .video-manifesto span {
+    white-space: nowrap;
   }
 
   .video-manifesto-copy {
@@ -2632,9 +2637,10 @@ h3 {
   }
 
   .video-manifesto {
-    width: min(100%, 10.6ch);
+    width: fit-content;
+    max-width: 100%;
     gap: 0.05em;
-    font-size: clamp(1.6rem, 7.8vw, 2.15rem);
+    font-size: clamp(1.42rem, 6.9vw, 1.95rem);
     line-height: 1;
   }
 
